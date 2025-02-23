@@ -10,7 +10,7 @@ import {
   Cog6ToothIcon
 } from '@heroicons/react/24/outline';
 
-const Sidebar = () => {
+const Sidebar = ({ onClose }) => {
   const location = useLocation();
 
   const navigation = [
@@ -25,9 +25,9 @@ const Sidebar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className="w-72 bg-gradient-to-b from-[#1a1a2e] to-[#2a2a4a] text-gray-300 p-6 shadow-xl">
+    <div className="w-72 h-screen bg-gradient-to-b from-[#1a1a2e] to-[#2a2a4a] text-gray-300 p-6 shadow-xl overflow-y-auto">
       <div className="mb-8">
-        <Link to="/">
+        <Link to="/" onClick={onClose}>
           <img src={logo} alt="Menger Logo" className="h-16 hover:scale-110 transition-transform duration-300" />
         </Link>
       </div>
@@ -37,6 +37,7 @@ const Sidebar = () => {
           <Link
             key={item.path}
             to={item.path}
+            onClick={onClose}
             className={`flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 group
               ${isActive(item.path) 
                 ? 'bg-gradient-to-r from-[#4d7eff] to-[#3d6ae6] text-white' 
